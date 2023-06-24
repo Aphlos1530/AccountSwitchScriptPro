@@ -1,0 +1,7 @@
+hello=你好
+world=世界
+!=！
+bilibili=哔哩哔哩
+You have not configured, please configure the game path: =检测到您尚未进行配置，请配置游戏路径：
+6.test file=6.文件测试
+hey=嘿

@@ -1,0 +1,122 @@
+// 中文菜单代码映射表
+
+
+// 其它
+
+10000 : *            菜  单            *
+
+10001 :
+
+
+// 游戏条
+
+10020 : *           无 游 戏           *
+
+10021 : *            原 神             *
+
+10022 : *          星 穹 铁 道          *
+
+10023 : *           崩 坏 4            *
+
+10029 : *          未 知 游 戏          *
+
+
+// 主菜单
+
+10100 : *           主 菜 单           *
+
+10101 : *      1. 账 号 切 换          *
+
+10102 : *      2. 账 号 管 理          *
+
+10103 : *      3. 设 置               *
+
+10104 : *      4. 问 题 修 复          *
+
+10106 : *      6. 帮 助               *
+
+10111 : *      -1. 退 出              *
+
+/ 子菜单
+
+10150 : *      5. 开 始               *
+
+10151 : *      5. 打 开 启 动 器       *
+
+10152 : *      5. 启 动 游 戏          *
+
+
+// Account Menu
+
+10200 : *       account menu          *
+
+10201 : *    1. list account          *
+
+10202 : *    2. export account        *
+
+10203 : *    3. quick export          *
+
+10204 : *    4. delete account        *
+
+10205 : *    5. rename account        *
+
+
+// Fix Menu
+
+10300 : *         fix menu            *
+
+10301 : *    1. config file lose      *
+
+10302 : *    2. config file error     *
+
+10303 : *    3. config info error     *
+
+10304 : *    4. version correct       *
+
+10305 : *    5. clear login state     *
+
+10309 : *    9. FAQ                   *
+
+
+// Set Menu
+
+10400 : *         set menu            *
+
+10401 : *    1. switch game           *
+
+10402 : *    2. configure game path   *
+
+10403 : *    3. set start mode        *
+
+10404 : *    4. set Language          *
+
+/ Sub Menu
+
+10421 : *    5. open game bar         *
+
+
+10422 : *    5. close game bar        *
+
+
+// Help Menu
+
+10600 : *        help menu            *
+
+10601 : *       1. usage              *
+
+10602 : *       2. quick usage        *
+
+10603 : *       3. reference          *
+
+10604 : *       4. about              *
+
+10605 : *       5. thanks             *
+
+10606 : *       6. download           *
+
+10607 : *       7. principle-1        *
+
+10608 : *       8. principle-2        *
+
+10609 : *       9. before use         *
+
