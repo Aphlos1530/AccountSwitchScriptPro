@@ -187,14 +187,14 @@ public class mekoBuilder {
         return this;
     }
 
-//    public mekoBuilder remove(Integer from, Integer to) {
-////        if (from < 0) from += builder.length();
-////        if (to < 0) to += builder.length();
-////
-////        int len = to - from + 1;
-////        builder.delete(from, len);
-//        return this;
-//    }
+    public mekoBuilder remove(Integer from, Integer to) {
+        if (from == 0 || to == 0) return this;
+        if (from < 0) from += builder.length();
+        if (to < 0) to += builder.length();
+        if (from < to) builder.delete(from, to + 1);
+        if (from > to) builder.delete(to, from + 1);
+        return this;
+    }
 
     //长度
 
