@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="AccountSwitchScriptPro" options="--add-exports java.desktop/sun.swing=ALL-UNNAMED" />
+      <module name="AccountSwitchScriptPro" options="" />
     </option>
   </component>
 </project>
