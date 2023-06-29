@@ -1,4 +1,4 @@
-package utils;
+package utils.mekos;
 
 /** 统一工具方法接口 */
 public interface imeko {

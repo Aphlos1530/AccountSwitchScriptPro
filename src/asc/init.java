@@ -1,7 +1,7 @@
 package asc;
 
 import static utils.meko.echo;
-import static utils.meko.input;
+import static utils.meko.getInput;
 
 public class init implements menu{
 
@@ -37,7 +37,7 @@ public class init implements menu{
         echo("No game detected. Please configure the game path . ");
         echo("");
         echo("1. Auto search        2. Manual input");
-        String input = input();
+        String input = getInput();
         echo("input = "+input);
     }
 

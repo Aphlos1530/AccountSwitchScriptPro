@@ -1,7 +1,8 @@
-package utils;
+package utils.mekos;
 
 import java.util.Scanner;
 
+// 待改名
 public class waitInput implements imeko {
 
     public static void co() {
@@ -22,6 +23,14 @@ public class waitInput implements imeko {
             case -1 -> co("exit");
             default -> co("continue");
         }
+    }
+
+    public static void main(String[] args) throws Exception {
+        System.out.println("Press any key to continue...");
+        while (System.in.read() == -1) {
+            Thread.sleep(100);
+        }
+        System.out.println("Continuing...");
     }
 
 }

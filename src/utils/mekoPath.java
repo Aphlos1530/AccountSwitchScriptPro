@@ -23,7 +23,7 @@ public class mekoPath {
      * 上一级目录
      */
     public static String lastPath(String path) {
-        return lastPath(path,1);
+        return lastPath(path, 1);
     }
 
     /**

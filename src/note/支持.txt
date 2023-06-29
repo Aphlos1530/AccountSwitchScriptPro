@@ -1,0 +1,18 @@
+菜单支持的字体：
+
+
+
+cmd
+
+JetBrains Mono 全系
+
+Cascadia Mono 全系
+
+Cascadia Code 全系
+
+Consolas 全系
+
+
+IDEA
+
+JetBrains Mono 21 Only

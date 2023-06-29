@@ -1,10 +1,9 @@
-package utils;
+package utils.mekos;
 
 import java.util.Scanner;
 
-import static utils.meko.echo;
-
-public class input implements imeko {
+// 待修改
+public class getInput implements imeko {
 
     public static String co() {
         return co(1);
@@ -26,9 +25,12 @@ public class input implements imeko {
 
     private static String read(String text) {
         Scanner scanner = new Scanner(System.in);
-        echo("");
-        echo(text);
+        echo.co("");
+        echo.co(text);
         return scanner.nextLine();
     }
+
+    public static final String PROMPT_MESSAGE = "Please enter your choice : ";
+    public static final String ERROR_MESSAGE = "Input error ! please input again : ";
 
 }

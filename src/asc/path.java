@@ -1,7 +1,6 @@
 package asc;
 
 import auto.fileSearch;
-import test.ConsoleUtils;
 import utils.mekoPath;
 
 import java.io.File;
@@ -22,7 +21,7 @@ public class path {
     }
 
     private static void disPot(String text) {
-        switch (input(text)) {
+        switch (getInput(text)) {
             case "1" -> searchPath(1);
             case "2" -> searchPath(2);
             case "3" -> inputPath();
@@ -406,9 +405,28 @@ public class path {
 
 
     private static void inputPath() {
-        System.out.println("iiiiiiiiiii");
+        //System.out.println("iiiiiiiiiii");
+
+        testClear2();
+        testClear2();
 
     }
+
+    public static void testClear() {
+//        ConsoleUtils.print("Hello, world!");
+//        ConsoleUtils.backLine();
+//        ConsoleUtils.print("This is a test.");
+//        ConsoleUtils.clear();
+    }
+
+    public static void testClear2() {
+
+        //ConsoleCLS.main();
+        String[] strings = {""};
+//        clear4.main(strings);
+
+    }
+
 
     private static Boolean checkPath(String path){
         String fileName = mekoPath.destFile(path);

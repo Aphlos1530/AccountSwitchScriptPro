@@ -13,37 +13,23 @@ import static utils.meko.swhPath;
 /**
  * 自定义语言类
  */
-public class readInMap {
-
-    public static final Map<String, String> NO_TO_EN_MAP = new LinkedHashMap<>();
-
-    public static final Map<String, String> NO_TO_CH_MAP = new LinkedHashMap<>();
-
-    public static final Map<String, String> NO_TO_JP_MAP = new LinkedHashMap<>();
-
-    public static final Map<String, String> NO_TO_KO_MAP = new LinkedHashMap<>();
-
-    public static final Map<String, String> NO_TO_RU_MAP = new LinkedHashMap<>();
-
-    public static final Map<String, String> TEST_MAP = new HashMap<>();
+public class readInMap2 {
 
     private static final String langPath = swhPath("revolve/lang");
 
+    public static final Map<String, Map<String, String>> LANG_MAP = new LinkedHashMap<>();
+
+    private static final String[] LANGUAGES = {"English", "Chinese", "Japanese", "Korean", "Russian"};
+
     static {
         try {
-            read(langPath + "/EnglishMenu.txt", NO_TO_EN_MAP, 1);
-            read(langPath + "/ChineseMenu.txt", NO_TO_CH_MAP, 1);
-            read(langPath + "/JapaneseMenu.txt", NO_TO_JP_MAP, 1);
-            read(langPath + "/KoreanMenu.txt", NO_TO_KO_MAP, 1);
-            read(langPath + "/RussianMenu.txt", NO_TO_RU_MAP, 1);
-
-            read(langPath + "/EnglishSent.txt", NO_TO_EN_MAP, 1);
-            read(langPath + "/ChineseSent.txt", NO_TO_CH_MAP, 1);
-            read(langPath + "/JapaneseSent.txt", NO_TO_JP_MAP, 1);
-            read(langPath + "/KoreanSent.txt", NO_TO_KO_MAP, 1);
-            read(langPath + "/RussianSent.txt", NO_TO_RU_MAP, 1);
-
-            read("revolve/lang/TestText.txt", TEST_MAP, 2);
+            for (String language : LANGUAGES) {
+                Map<String, String> languageMap = new LinkedHashMap<>();
+                read(langPath + language + "Menu.txt", languageMap, 1);
+                read(langPath + language + "Sent.txt", languageMap, 1);
+                read(langPath + language + "Test.txt", languageMap, 2);
+                LANG_MAP.put(language, languageMap);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

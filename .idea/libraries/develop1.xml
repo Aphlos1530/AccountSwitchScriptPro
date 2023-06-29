@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="develop1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/develop/ASS-0624-0408.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/develop/AccountSwitchScriptPro.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/develop/ASS-0624-1355.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/develop/ASS-0613-2247.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

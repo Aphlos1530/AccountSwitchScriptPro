@@ -26,9 +26,10 @@
 
 ### Aphlos ###
 .trash
+.trash2
 /target/
-/AccountSwitchScriptPro4Java.exe
-/AccountSwitchScriptPro4Java.iml
+/AccountSwitchScriptPro.exe
+/AccountSwitchScriptPro.iml
 /data/cert/
 /data/temp/
-/src/test/
+#/src/test/

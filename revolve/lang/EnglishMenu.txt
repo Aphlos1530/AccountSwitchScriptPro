@@ -16,40 +16,95 @@
 
 // Game Bar
 
-10020 : *          No games           *
+//10020 : *          No games           *
 
-10021 : *       Genshin Impact        *
+//10021 : *       Genshin Impact        *
 
-10022 : *          Star Rail          *
+//10022 : *          Star Rail          *
 
-10023 : *       Honkai Impact 4       *
+//10023 : *       Honkai Impact 4       *
 
-10029 : *        Unknown game         *
+10029 : Unknown game
+
+10020 : No games
+
+10021 : Genshin Impact
+
+10022 : Star Rail
+
+10023 : Honkai Impact 4
+
+10029 : Unknown game
 
 
 // Main Menu
 
-10100 : *          Main menu          *
+//10100 : *          Main menu          *
 
-10101 : *    1. Switch account        *
+//10101 : *    1. Switch account        *
 
-10102 : *    2. Account management    *
+//10102 : *    2. Account management    *
 
-10103 : *    3. Setting               *
+//10103 : *    3. Setting               *
 
-10104 : *    4. Fix errors            *
+//10104 : *    4. Fix errors            *
 
-10106 : *    6. Help                  *
+//10106 : *    6. Help                  *
 
-10111 : *    -1. Exit                 *
+//10111 : *    -1. Exit                 *
+
+
+//10100 : Main menu
+
+//10101 : 1. Switch account
+
+//10102 : 2. Account management
+
+//10103 : 3. Setting
+
+//10104 : 4. Fix errors
+
+//10106 : 6. Help
+
+//10111 : -1. Exit
+
+
+10100 : Main menu
+
+10101 : Switch account
+
+10102 : Account management
+
+10103 : Setting
+
+10104 : Fix errors
+
+10106 : Help
+
+10111 : Exit
+
 
 / Sub Menu
 
-10150 : *    5. Start                 *
+//10150 : *    5. Start                 *
 
-10151 : *    5. Start launcher        *
+//10151 : *    5. Start launcher        *
 
-10152 : *    5. Start game            *
+//10152 : *    5. Start game            *
+
+//10150 : 5. Start
+
+//10151 : 5. Start launcher
+
+//10152 : 5. Start game
+
+10150 : Start
+
+10151 : Start launcher
+
+10152 : Start game
+
+
 
 
 // Account Menu

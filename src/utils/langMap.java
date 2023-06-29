@@ -4,49 +4,50 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static utils.meko.readVar;
 import static utils.meko.swhPath;
 
 /**
  * 自定义语言类
  */
-public class readInMap {
-
-    public static final Map<String, String> NO_TO_EN_MAP = new LinkedHashMap<>();
-
-    public static final Map<String, String> NO_TO_CH_MAP = new LinkedHashMap<>();
-
-    public static final Map<String, String> NO_TO_JP_MAP = new LinkedHashMap<>();
-
-    public static final Map<String, String> NO_TO_KO_MAP = new LinkedHashMap<>();
-
-    public static final Map<String, String> NO_TO_RU_MAP = new LinkedHashMap<>();
-
-    public static final Map<String, String> TEST_MAP = new HashMap<>();
+public class langMap {
 
     private static final String langPath = swhPath("revolve/lang");
 
-    static {
+    /**
+     * 获取 Map 表
+     */
+    public static Map<String, String> get(String language) {
+        Map<String, String> languageMap = new LinkedHashMap<>();
         try {
-            read(langPath + "/EnglishMenu.txt", NO_TO_EN_MAP, 1);
-            read(langPath + "/ChineseMenu.txt", NO_TO_CH_MAP, 1);
-            read(langPath + "/JapaneseMenu.txt", NO_TO_JP_MAP, 1);
-            read(langPath + "/KoreanMenu.txt", NO_TO_KO_MAP, 1);
-            read(langPath + "/RussianMenu.txt", NO_TO_RU_MAP, 1);
-
-            read(langPath + "/EnglishSent.txt", NO_TO_EN_MAP, 1);
-            read(langPath + "/ChineseSent.txt", NO_TO_CH_MAP, 1);
-            read(langPath + "/JapaneseSent.txt", NO_TO_JP_MAP, 1);
-            read(langPath + "/KoreanSent.txt", NO_TO_KO_MAP, 1);
-            read(langPath + "/RussianSent.txt", NO_TO_RU_MAP, 1);
-
-            read("revolve/lang/TestText.txt", TEST_MAP, 2);
+            read(langPath + "/" + language + "Menu.txt", languageMap, 1);
+            read(langPath + "/" + language + "Sent.txt", languageMap, 1);
+            read(langPath + "/" + language + "Essa.txt", languageMap, 2);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return languageMap;
+    }
+
+    /** 根据数字获取 */
+    public static Map<String, String> get(Integer type) {
+        return switch (type) {
+            case 1  -> get("English");
+            case 2  -> get("Chinese");
+            case 3  -> get("Japanese");
+            case 4  -> get("Korean");
+            case 5  -> get("Russian");
+            default -> get("Other");
+        };
+    }
+
+    /** 自动获取（对应语言的） */
+    public static Map<String, String> get() {
+        String language = readVar("language");
+        return get(language);
     }
 
     /**
