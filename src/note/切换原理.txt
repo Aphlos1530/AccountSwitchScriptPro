@@ -1,0 +1,35 @@
+切换原理
+
+
+[双服切换原理]
+
+官服与哔服的区别，只有 config.ini 及一个 PCGameSDK.dll 文件，
+
+分别位于 Genshin Impact Game 及 Genshin Impact Game\YuanShen_Data\Plugins 下
+
+星铁的则是位于 Game 及 Game\StarRail_Data\Plugins 下
+
+config.ini 有三个关键参数：cps、channel、sub_channel
+
+在官服中，cps=mihoyo  channel=1  sub_channel=1
+
+在哔服中，cps=bilibili  channel=14  sub_channel=0
+
+当 channel 修改为 1 时就是官服登录，14 就是哔服登录，其余两参数可不改
+
+而当 sub_channel 为 1 时可以进行 Tap 扫码登录，为 0 则不可以
+
+以哔服登录时，需要 PCGameSDK.dll 文件，官服则不需要（之前是必须没有）
+
+另，官服启动器会删除这个 SDK 文件，这就是为什么哔服登录一两次就不管用了，因为文件被删了
+
+
+[国服、国际服切换原理]
+
+暂不清楚
+
+
+[多账号切换原理]
+
+见《账号登录凭证导出.txt》
+

@@ -4,10 +4,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static utils.meko.readSet;
-import static utils.meko.readVar;
 import static utils.translator.translate;
 
+/** 自定义菜单实体类 */
 public class mekoMenu {
+
+    // 由于 Java 暂不支持类别名（ 即 import ... as ... ），故设计成非静态方式调用，以实现 menu.fun() 形式的调用。
 
     private String navbar;
 
@@ -16,6 +18,7 @@ public class mekoMenu {
     private final List<String> itemList;
 
     public mekoMenu() {
+        title = "menu";
         navbar = getGameBar();
         itemList = new LinkedList<>();
     }
@@ -49,13 +52,29 @@ public class mekoMenu {
         setTabs();
 
         //获取每一行菜单
-        List<String> printLines = getMenuLines();
+        if (menuList.isEmpty()) getMenuLines();  //内容为空时才会去生成（建议配合全局对象使用）
 
         //打印菜单
-        for (String line : printLines) {
+        for (String line : menuList) {
             System.out.println(line);
         }
 
+    }
+
+
+    //追加方法
+
+
+    /** 判断菜单行是否为空 */
+    public Boolean isEmpty(){
+        return menuList.isEmpty();
+    }
+
+    /** 清空菜单行 */
+    public void clear(){
+        title = "menu";
+        itemList.clear();
+        menuList.clear();
     }
 
 
@@ -122,11 +141,13 @@ public class mekoMenu {
     //核心功能
 
 
+    private List<String> menuList = new LinkedList<>();  //独立变量用于缓存结果，避免反复计算
+
     /**
      * 获取每一行菜单
      */
-    private List<String> getMenuLines() {
-        List<String> mlist = new LinkedList<>();
+    private void getMenuLines() {
+        List<String> mlist = menuList;
         //导航条
         mlist.add(firstLine());
         if (showGameBar && gameBarType.equals("up")) {
@@ -148,7 +169,6 @@ public class mekoMenu {
             mlist.add(barLine());
         }
         mlist.add(lastLine());
-        return mlist;
     }
 
     //七种行
@@ -287,13 +307,13 @@ public class mekoMenu {
     //内置变量
 
 
-    private final Boolean showGameBar = readSet("showGameBar").equals("true");
+    private final Boolean showGameBar = readSet("showGameBar").equals("true");  //是否显示游戏导航条
 
     private final String gameBarType = readSet("gameBarType");  //游戏条顶置或底置
 
     private final String language = readSet("language");  //当前文字语言
 
-    private final String environment = System.console() == null ? "IDEA" : "CMD";   //在CMD中运行还是IDEA中运行
+    private final String environment = System.console() == null ? "IDEA" : "CMD";   //在 CMD 中运行还是 IDEA 中运行
 
 
 }

@@ -1,0 +1,7 @@
+快速上手
+
+
+将解压后的 AccountSwitchScript 文件夹放入原神或星铁目录下（Genshin Impact or Star Rail）
+
+之后双击 main.bat 进行初始化（initialize）即可
+

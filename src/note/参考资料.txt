@@ -1,0 +1,308 @@
+参考资料
+
+
+[参考文章]
+
+
+1.原神3.7官服b服服务器切换
+
+By 烟尘散去 23/05/27
+
+https://www.bilibili.com/read/cv23964568
+
+
+2.崩坏 苍穹铁道多账号切换
+
+By 淡夏之风 23/05/01
+
+https://www.bilibili.com/read/cv23418678
+
+
+3.原神PC版官服/B服切换服务器方法（3.5版本可用）无需第三方工具
+
+By 御言527 23/03/03
+
+https://www.bilibili.com/read/cv22161567
+
+
+4.原神B服官服一键互相切换，自动登录账号，解决官服账户缓存错误
+
+By 烟月风波 22/10/18
+
+https://www.bilibili.com/read/cv19165363
+
+
+5.原神电脑版--B服突然变官服/下载B服却是官服/官服转不回B服
+
+By V金色年华 22/08/31
+
+https://www.bilibili.com/read/cv18372982
+
+
+6.原神电脑版--31-4302数据异常
+
+By V金色年华 22/04/28
+
+https://www.bilibili.com/read/cv16352133
+
+
+7.原神PC端双服一键切换(一劳永逸，含方法)
+
+By 堕落の梅糕桑 22/03/30
+
+https://www.bilibili.com/read/cv15892575
+
+
+8.原神电脑版【国际服-国服】双向切换--傻瓜式换服教程
+
+By V金色年华 22/03/22
+
+https://www.bilibili.com/read/cv15768559
+
+
+9.[原神]服务器切换器问题汇总解决方法
+
+By 辉夜海灵顿 22/02/23
+
+https://www.bilibili.com/read/cv15388042
+
+
+10.原神电脑版【官服-B服-国际服】换服/逻辑/手搓启动器简析（非教程）
+
+By V金色年华 22/01/01
+
+https://www.bilibili.com/read/cv14658037
+
+
+11.原神PC端快速切换账号，告别手输账密烦恼
+
+By 月伴珊瑚湾 21/06/20
+
+https://www.bilibili.com/read/cv11811683
+
+
+12.原神PC端如何多个账号自由切换，无需再次输入账号密码
+
+By 猫猫和猫尾势不两立 21/04/24
+
+https://www.bilibili.com/read/cv11004659
+
+
+[参考视频]
+
+
+1.星穹铁道 b服转官服 官服转b服 一看就会
+
+By 这不是高兴的表情 23/04/30
+
+https://www.bilibili.com/video/BV1Gh411L7VW
+
+
+2.还不会星铁怎么切换账号？包教会！
+
+By 大头猫咪 23/04/26
+
+https://www.bilibili.com/video/BV11s4y1c79T
+
+
+3.原神最简单最快速的的b服官服切换转换！无需修改任何文件，也不需要下载任何软件，适用于任何版本！稳定高效！
+
+By 鼠鼠由 23/03/21
+
+https://www.bilibili.com/video/BV1mk4y1t71t
+
+
+4.b服官服互转，无需修改文件！
+
+By 憨憨的阿玛 23/03/09
+
+https://www.bilibili.com/video/BV1pY4y1y7VH
+
+
+5.原神PC端B服秒换官服，我应该不是最后一个知道的吧
+
+By 艾来麦屋 23/03/01
+
+https://www.bilibili.com/video/BV1vY411r7KM
+
+
+6.最新官服切换B服，B服切换官服方法，一学就会
+
+By 伍仙Z 23/02/24
+
+https://www.bilibili.com/video/BV16b411Q7k1
+
+
+7.两分钟教会你双服切换
+
+By 长野原康桑 23/02/09
+
+https://www.bilibili.com/video/BV1ZD4y1N7zq
+
+
+8.原神官服B服速换，简单易学，原神启动器，官服换B服，B服换官服，服务器切换
+
+By 拉奇雅-绫 23/01/09
+
+https://www.bilibili.com/video/BV1FG4y1A7f3
+
+
+9.原神「B服改官服，官服改B服，自由切换」
+
+By 好蓝丶 22/12/11
+
+https://www.bilibili.com/video/BV1Le411P7tF
+
+
+10.[原神]3.5官服改B服B服改官服的方法
+
+By 露馅的橘子 22/11/02
+
+https://www.bilibili.com/video/BV1u14y1V7GW
+
+
+11.一分钟教你原神如何b服切换官服！在双服间来回横跳！
+
+By bad-vibesforever 22/10/09
+
+https://www.bilibili.com/video/BV1rN4y1A7si
+
+
+12.通过xbox game bar实现原神B服与官服切换
+
+By Yin_xuE_ 22/08/26
+
+https://www.bilibili.com/video/BV1va411G7Si
+
+
+13.原神双服安装攻略详细完整版
+
+By 玩具の娃娃 22/08/14
+
+https://www.bilibili.com/video/BV1Kd4y1o7Ao
+
+
+14.不需要下载文件，仅需两个步骤，从原神B服切换到官服
+
+By Yate兰蒂斯 22/07/06
+
+https://www.bilibili.com/video/BV1kB4y1H7yZ
+
+
+15.数据异常,错误码31-4302修复解决方法（国服/国际服/安卓通用）
+
+By 辉夜海灵顿 22/04/05
+
+https://www.bilibili.com/video/BV1fY41177Cd
+
+
+16.原神PC端B服官服自动化无缝切换教程
+
+By 全能の岚漾漾 22/01/17
+
+https://www.bilibili.com/video/BV1su411m7r8
+
+
+17.原神1.1版本国服PC端官服B服共用客户端，快速切换30秒学会
+
+By ArgonCrystal 20/11/12
+
+https://www.bilibili.com/video/BV1Pa411w7Hg
+
+
+[相关工具]
+
+
+1.星穹铁道切服工具 快捷切换B服与官服，一个客户端玩多个服务器
+
+By 快辰 23/04/27
+
+https://www.bilibili.com/video/BV1kP41127cs
+
+
+2.[星穹铁道]转服教程:B服\官服自由切换（无须下载工具手动转换）
+
+By 辉夜海灵顿 23/04/26
+
+https://www.bilibili.com/video/BV1AV4y1Z7ZT
+
+
+3.[原神]多账号管理工具!一键切换游戏账号 原神实用工具推荐第六期
+
+By AA-往生堂桃姐 23/04/05
+
+https://www.bilibili.com/video/BV19L411m7PV
+
+
+4.原神切服器，支持官服B服互转
+
+By Rui3128 23/03/05
+
+https://www.bilibili.com/video/BV1vs4y1V7yB
+
+
+5.胡桃工具箱指南 4 - 高级启动器（切换账号/切换服务器/帧率解锁）
+
+By 天雨Masterain 23/01/29
+
+https://www.bilibili.com/video/BV1Sv4y1k7zi
+
+
+6.原神3.4版本可用!官服B服切换1秒搞定~稳定更新
+
+By 铁芯Yi 23/01/09
+
+https://www.bilibili.com/video/BV1cP4y1r7ik
+
+
+7.原神所有版本可用，官服B服切换1秒搞定，稳定
+
+By 铁芯Yi 22/11/28
+
+https://www.bilibili.com/video/BV1614y1n7s7
+
+
+8.[原神3.2]PC官服b服一键启动相互转换
+
+By 暗研菌QAQ 22/11/09
+
+https://www.bilibili.com/video/BV13G4y1t7G4
+
+
+9.原神三服切换/官服/国际服/B服,自由玩转原神！
+
+By 辉夜海灵顿 22/11/04
+
+https://www.bilibili.com/video/BV1h8411h7ru
+
+
+10.[原神]3.3可用原神pc客户端双服切换最新版
+
+By 一缕相思风雨中 22/07/13
+
+https://www.bilibili.com/video/BV1R94y1X7wH
+
+
+11.自制原神启动器，可以自定义背景还可以转服，自动弹琴、自动钓鱼、抽卡记录、角色查询等！
+
+By 诺仙仙君 22/03/30
+
+https://www.bilibili.com/video/BV133411W7JU
+
+
+12.原神2.0<持续更新> PC端 超快速 官切B，B切官
+
+By Leon丶Kevin 21/07/23
+
+https://www.bilibili.com/video/BV15K4y197VP
+
+
+13.原神账号切换工具
+
+By 初音Lucky 21/06/23
+
+https://www.bilibili.com/video/BV1Zv411n76p
+
+
+......
+

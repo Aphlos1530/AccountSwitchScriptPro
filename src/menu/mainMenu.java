@@ -3,19 +3,13 @@ package menu;
 //import utils.MekoMenu2;
 import utils.mekoMenu;
 
-import static utils.meko.echo;
-import static utils.meko.readVar;
+import static utils.meko.*;
 
 public class mainMenu implements imenu {
 
-    public static void print() {
+    private static final mekoMenu menu = new mekoMenu();  //通过 new 静态对象的方式实现 短名称 调用
 
-
-        echo("");
-
-        mekoMenu menu = new mekoMenu();
-//        MekoMenu2 menu = new MekoMenu2();
-
+    private static void init() {
         menu.set("Main menu");
         menu.put("1. Switch account");
         menu.put("2. Account management");
@@ -24,21 +18,21 @@ public class mainMenu implements imenu {
         menu.put("5. "+getStartItem());
         menu.put("6. Help");
         menu.put("-1. Exit");
-        menu.print();
-
-
-
     }
 
-
-
     private static String getStartItem() {
-        String sMode = readVar("sMode");
+        String sMode = readSet("sMode");
         return switch (sMode) {
             case "1" -> "Start launcher";
             case "2" -> "Start game";
             default  -> "Start";
         };
+    }
+
+    public static void print() {
+        if (menu.isEmpty()) init();  //惰式初始化
+        echo("");
+        menu.print();
     }
 
 

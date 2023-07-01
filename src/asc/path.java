@@ -106,9 +106,13 @@ public class path {
 
 
 
+    private static Integer found = 0;
+
 
 
     private static void manualSearch(String fileName, Integer depth) {
+
+        found=0;
 
         echo("");
             //echo("In the next steps, you need to enter [\\] or [、] to confirm, [`] or [·] to quit , and else to continue.");
@@ -134,8 +138,13 @@ public class path {
 
 
 //            echo("");
-        echo("In the next steps, you need to enter [Y] to confirm, [Q] to quit , and else to continue.");
+//        echo("In the next steps, you need to enter [Y] to confirm, [Q] to quit , and else to continue.");
 
+
+        echo("In the next steps, you need to enter [Y] to confirm, [Q] to quit, and [Else] to continue.");
+
+//        echo("In the next steps, you need to enter [Y] to confirm, [Q] to quit, and [] to continue.");
+//
 
 
 
@@ -151,7 +160,7 @@ public class path {
 
         String path = fileSearch.reSearch(fileName, depth);
 
-        echo("");
+//        echo("");
         Byte state = circleSearch(path);
 
         Boolean notFound = true;
@@ -168,10 +177,9 @@ public class path {
     }
 
 
+    private static final List<String> exitChars = Arrays.asList("`", "·", "q", "Q", "quit", "Quit", "QUIT", "e", "E", "exit", "Exit", "EXIT");
 
-    private static final List<String> exitChars = Arrays.asList("`", "·", "q", "Q");
-
-    private static final List<String> confirmChars = Arrays.asList("\\","、","y","Y");
+    private static final List<String> confirmChars = Arrays.asList("\\", "、", "y", "Y", "yes", "Yes", "YES", "c", "C", "confirm", "Confirm", "CONFIRM");
 
 
 
@@ -179,9 +187,31 @@ public class path {
         // goto
         if (checkPathTest(path)) {
 
-            //echo("");
-            echo("");
-            echo(path);
+//            echo("\r\r\r\r\r\r");
+
+//            System.out.print("\r\r\r\r");
+//            System.out.print("\r");//ok
+
+//            echo("123\n456\n789");
+//
+//            System.out.println("123456\r789");
+
+//            echo("\r\r\r\r");
+            echo("\r");
+
+//            echo("12345\r123");
+
+
+            found++;
+//            echo("");
+//            echo("");
+//            echo(path);
+
+
+            echo(found+". "+path);
+
+
+//            echo("\r\r"+found+". "+path);
 
             echo("");
             echo("Please enter your choice : ");
@@ -219,7 +249,18 @@ public class path {
             } else if (confirmChars.contains(input)) {
                 cfgPath();
                 return 2;
+            }else {
+
+//                echo("\r");
+                echo("");
+                echo("Searching ... ");
+
+
             }
+
+
+
+
 //            else {
 //
 //
@@ -300,8 +341,20 @@ public class path {
 
                 path = fileSearch.conSearch();//继续找
                 if (!path.equals("")){
+
+//                    echo("123456789\r");
+//                    System.out.println("123456789\r");
+//                    System.out.print("12345678\r");
+
+//                    System.out.print("\r");
+//                    System.out.println("\r");
+
+
+
                     // 找到，送检
                     circleSearch(path);
+
+
 
                 }
 

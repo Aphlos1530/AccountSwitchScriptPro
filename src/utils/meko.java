@@ -10,7 +10,7 @@ import java.util.Map;
 public class meko {
 
     public static String swhPath(String path) {
-        return filePath.co(path);
+        return filePath.getTruePath(path);
     }
 
     // IO

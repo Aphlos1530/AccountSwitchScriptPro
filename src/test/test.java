@@ -6,9 +6,11 @@ import utils.*;
 import org.junit.Test;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import static java.lang.Thread.sleep;
+import static menu.menu.prtMainMenu;
 import static utils.meko.echo;
 
 
@@ -245,6 +247,73 @@ public class test {
         System.out.println(builder.getStringEnhance(-6,-5));
         System.out.println(builder.getStringEnhance(-2,1));
         System.out.println(builder.getStringEnhance(2,-1));
+    }
+
+
+    @Test
+    public void testPrtMainMenu() {
+        int length = 1024;
+
+        timePiece.set();
+        prtMainMenu();
+        String first = timePiece.get();
+
+        timePiece.set();
+        for (int i = 0; i < length - 1; i++) {
+            prtMainMenu();
+        }
+        String later = timePiece.get();
+
+        System.out.println("\n 打印菜单：" + length + "次");
+        System.out.println("\n 初次耗时：" + first + "秒");
+        System.out.println("\n 后续耗时：" + later + "秒");
+
+        double avg = Double.parseDouble(later) / length;
+        DecimalFormat df = new DecimalFormat("#.######");
+        System.out.println("\n 后均耗时：" + df.format(avg) + "秒/次");
+    }
+
+    @Test
+    public void testBackslash(){
+        System.out.print("Hello\r");
+        System.out.print("World");
+        System.out.println();
+        System.out.println("123456\r789");
+        System.out.println("abc\r12345");
+    }
+
+    @Test
+    public void testBackslash2(){
+        echo("Hello\r");
+        echo("World");
+        echo("");
+        echo("123456\r789");
+        echo("abc\r12345");
+    }
+
+    @Test
+    public void testBackslash3(){
+        System.out.println("Hello\r");
+        System.out.print("World");
+        System.out.println("-");
+        System.out.print("Hello\r");
+        System.out.println("World");
+    }
+
+    @Test
+    public void testBackslash4(){
+        System.out.print("Hello\r\nWorld");
+    }
+
+    @Test
+    public void testBackslash5(){
+        System.out.print("Hello\r\r\nWorld");
+    }
+
+
+    @Test
+    public void testBackslash6(){
+        System.out.print("Hello\r\r\r\nWorld");
     }
 
 }

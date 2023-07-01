@@ -18,19 +18,34 @@ public class echo implements imeko {
      * 英文翻译
      */
     public static void co(String text) {
-        print(translate(text));
+        if (text == null) {
+            System.out.println();
+            return;
+        }
+        if (text.endsWith("\r")) {
+            System.out.print(text);
+            return;
+        }
+        print(finalTreat(translate(text)));
     }
 
     /**
      * 打印输出
      */
     private static void print(String text) {
-        text = text.trim();
         if (text.endsWith(":") || text.endsWith("...")) {
             System.out.print(text + " ");
         } else {
             System.out.println(text);
+            //System.out.print("\n" + text);
         }
+    }
+
+    /**
+     * 末尾处理
+     */
+    private static String finalTreat(String text) {
+        return text.trim();
     }
 
 }
