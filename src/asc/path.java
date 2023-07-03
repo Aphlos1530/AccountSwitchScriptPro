@@ -1,14 +1,16 @@
 package asc;
 
+import auto.WindowsShortcut;
 import auto.fileSearch;
-import utils.mekoPath;
+import utils.timePiece;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.*;
 
 import static utils.meko.*;
+import static utils.mekoPath.lastPath;
 
 public class path {
 
@@ -35,478 +37,467 @@ public class path {
 
         String fileName = "launcher.exe";
 
-        switch (mode){
+        switch (mode) {
             case 1 -> {
-                overSearch(fileName,4);
+                overSearch(fileName, 4);
 
 
             }
             case 2 -> {
-                manualSearch(fileName,5);
+                manualSearch(fileName, 5);
 
             }
         }
 
     }
+
+
+    //自动搜索
+
 
     private static void overSearch(String fileName, Integer depth) {
 
-            echo("");
-            echo("Begin searching ... Please wait patiently.");
+        //清空缓存
+
+        foundCount = 0;
+        foundPath.clear();
+
+        //打印提示信息
+
+        echo("");
+        echo("Begin searching, please wait patiently ...");
+
+        //开始搜索
+
+        timePiece.set();  //加入时间统计
 
         List<String> list = fileSearch.overSearch(fileName, depth);
 
-        Integer count = 0;
+        String consume = timePiece.get();
+
+        //未找到路径
+        if (list.size() == 0) {
+            prtNotFoundMsg();
+            return;
+        }
+
+        //路径过滤
+
         for (String path : list) {
+            if (checkPath(path)) {
+                //检查通过，存入并打印
+                foundCount++;
+                foundPath.put(String.valueOf(foundCount), path);  //存入伪 List 中
 
-            if (checkPath(path)){
-                count++;
+                echo("\r");  //清空正在搜索字样
+                echo("[" + foundCount + "] " + path);  //新样式
+                //echo(foundCount + ". " + path);  //旧样式
+            }
+        }
+
+        //信息统计
+
+        echo("");
+        echo("Found : " + foundCount + "\t" + "Consume : " + consume + " S");  //待翻译
+
+        //等待用户输入
+
+        echo("");
+        echo("Please enter your choice : ");
+
+        //输入循环
+
+        String input;
+        while (true) {
+
+            input = input();
+
+            //直接回车
+            if (input.equals("")) {
                 echo("");
+                echo("Input empty, operation canceled.");
+                break;
+            }
 
-                echo(count+". "+path);
-            }else {
-                list.remove(path);
+            //选择路径
+            currentPath = foundPath.get(input);
+            if (currentPath == null) {
+                echo("");
+                echo("Input error, please re-enter : ");
+            } else {
+                //进行配置
+                cfgPath();
+                break;
             }
 
         }
 
-        // 未找到
-        if (list.size()==0){
-            System.out.println("未找到");
-            return;
-        }
-
-//        else{
-//            //下一步
-//        }
-
-        // 选择路径
-        //System.out.println("请选择.");
-        selectPath(list);
-
     }
 
 
-    private static void overSearch() {
-
-    }
-
-    private static void selectPath(List<String> list) {
-
-        System.out.println("正在选择路径");
-
-        //死循环
-
-        //用户取消配置
+    //手动搜索
 
 
-        //进行配置路径
-        cfgPath();
-    }
+    private static final Map<String, String> foundPath = new HashMap<>();  //找到的路径（为避免字符与整数的转换，这里以 Map 代替 List ）
 
+    private static Integer foundCount = 0;  //找到的路径数目（可用 foundPath.size() 代替）
 
+    private static String currentPath = "";  //当前搜索出来的路径
 
-    private static Integer found = 0;
-
-
-
+    /**
+     * 手动搜索
+     */
     private static void manualSearch(String fileName, Integer depth) {
 
-        found=0;
+        //清空缓存
+
+        foundCount = 0;
+        foundPath.clear();
+
+        //打印提示信息
 
         echo("");
-            //echo("In the next steps, you need to enter [\\] or [、] to confirm, [`] or [·] to quit , and else to continue.");
-
-//            echo("In the next steps, you need to enter [、] to confirm, [·] to quit , and else to continue.");
-
-
-//            echo("In the next steps, you need to enter : ");
-//            echo("");
-//            echo("");
-//            echo("[\\] or [、] to confirm path");
-//
-//
-//            echo("");
-//            echo(" [`] or [·] to quit search");
-//
-//
-//            echo("");
-//            //echo("else to continue search");
-//
-//            echo("[Enter] to continue search");
-
-
-
-//            echo("");
-//        echo("In the next steps, you need to enter [Y] to confirm, [Q] to quit , and else to continue.");
-
-
         echo("In the next steps, you need to enter [Y] to confirm, [Q] to quit, and [Else] to continue.");
 
-//        echo("In the next steps, you need to enter [Y] to confirm, [Q] to quit, and [] to continue.");
-//
-
-
-
+        //开始搜索
 
         echo("");
-//        echo("Begin searching ... Please wait patiently.");
-        echo("Begin searching ... ");
+        echo("Begin searching ...");
 
+        currentPath = fileSearch.reSearch(fileName, depth);
 
+        //进入循环搜索
 
-
-
-
-        String path = fileSearch.reSearch(fileName, depth);
-
-//        echo("");
-        Byte state = circleSearch(path);
-
-        Boolean notFound = true;
-
-        if (state==0){
-            //
-            System.out.println("未找到");
-        }else if (state==1){
-            //用户退出
-        }else if (state==2){
-            //正常配置
-        }
+        boolean found = circleSearch();
+        if (found) cfgPath();  //循环结束后再配置路径，避免嵌套过深
 
     }
 
+    //确认与退出
 
     private static final List<String> exitChars = Arrays.asList("`", "·", "q", "Q", "quit", "Quit", "QUIT", "e", "E", "exit", "Exit", "EXIT");
 
     private static final List<String> confirmChars = Arrays.asList("\\", "、", "y", "Y", "yes", "Yes", "YES", "c", "C", "confirm", "Confirm", "CONFIRM");
 
+    /**
+     * 循环搜索
+     */
+    private static boolean circleSearch() {
 
+        //未找到路径
 
-    private static Byte circleSearch(String path) {
-        // goto
-        if (checkPathTest(path)) {
+        if (currentPath.equals("")) {
+            prtNotFoundMsg();
+            return false;
+        }
 
-//            echo("\r\r\r\r\r\r");
+        if (checkPath()) {
 
-//            System.out.print("\r\r\r\r");
-//            System.out.print("\r");//ok
+            //检查通过，存入并打印
 
-//            echo("123\n456\n789");
-//
-//            System.out.println("123456\r789");
+            foundCount++;
+            foundPath.put(String.valueOf(foundCount), currentPath);  //存入伪 List 中
 
-//            echo("\r\r\r\r");
-            echo("\r");
+            echo("\r");  //清空正在搜索字样
+            echo("[" + foundCount + "] " + currentPath);  //新样式
+            //echo(foundCount + ". " + currentPath);  //旧样式
 
-//            echo("12345\r123");
-
-
-            found++;
-//            echo("");
-//            echo("");
-//            echo(path);
-
-
-            echo(found+". "+path);
-
-
-//            echo("\r\r"+found+". "+path);
+            //等待用户输入
 
             echo("");
             echo("Please enter your choice : ");
 
+            String input = input();
 
-            Scanner scanner = new Scanner(System.in);
-            String input = scanner.nextLine();
-            //String input = scanner.next();
-
-
-//            switch (input) {
-//                case "`", "·" -> {
-//                    return;
-//                }
-//                case "\\", "、" -> cfgPath();
-//                default -> {
-//                    fileSearch.conSearch();
-//                    manualSearch();
-//
-//                    //缺少：
-//                    // 搜索结束
-//                }
-//            }
-
-//            if (input.equals("`")||input.equals("·")){
-//                return;
-//            }
-//            if (input.equals("`")||input.equals("·")){
-//                return;
-//            }
-
+            //用户退出搜索
 
             if (exitChars.contains(input)) {
-                return 1;
-            } else if (confirmChars.contains(input)) {
-                cfgPath();
-                return 2;
-            }else {
-
-//                echo("\r");
-                echo("");
-                echo("Searching ... ");
-
-
+                prtNotFoundMsg();
+                return false;
             }
 
+            //用户确认
 
+            if (confirmChars.contains(input)) {
+                return true;  //循环结束后再配置路径，避免嵌套过深
+            }
 
+            //尝试从之匹配前的路径（使用 StrMap 进行查找，无需判断数字是否在合理的范围内）
 
-//            else {
-//
-//
-//                path = fileSearch.conSearch();//继续找
-//                if (!path.equals("")){
-//                    // 找到，送检
-//                    circleSearch(path);
-//
-//                }else {
-//                    //找不到，返回
-//                    return 0;
-//                }
-//
-//
-//
-//            }
-//            path = fileSearch.conSearch();
-//            circleSearch(path);
+            String selectPath = foundPath.get(input);
+            if (selectPath != null) {
+                currentPath = selectPath;  //设置成用户选定的路径
+                return true;  //循环结束后再配置路径，避免嵌套过深
+            }
 
+            //进行下一轮循环，提前打印提示信息（没有放到路径检查之外，是为了避免与初次的提示相冲突）
 
-//        } else {
-//            //路径检查不通过
-////            path = fileSearch.conSearch();
-////            circleSearch(path);
-//
-//
-//        path = fileSearch.conSearch();//继续找
-//            if (!path.equals("")){
-//                // 找到，送检
-//                circleSearch(path);
-//
-//            }else {
-//                //找不到，返回
-//                return 0;
-//            }
-//
-//        }
-
-//        else {
-//            path = fileSearch.conSearch();
-//            circleSearch(path);
-//        }
-
-
-//        path = fileSearch.conSearch();
-//        circleSearch(path);
-
-//        if (!fileSearch.conSearch().equals("")){
-//
-//            circleSearch(path);
-//
-//        }
-
+            echo("");
+            echo("Being searching ...");
 
         }
 
+        //路径不符合，继续寻找（此处不可加 else）
 
-        //System.out.println();
+        currentPath = fileSearch.conSearch();
 
-        //System.out.print("\033[2K\r");
-
-//        System.out.print("\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r");
-
-//        System.out.print("\033[1A\r" + "新的内容");
-
-//        System.out.print("\033[2J\033[H" + "新的内容");
-
-        //ConsoleUtils.backLine();
-
-//        ConsoleUtils.backLine();
-//        ConsoleUtils.backLine();
-//        ConsoleUtils.backLine();
-
-//        ConsoleUtils.clear();
-
-
-//        ConsoleUtils.clearLine(3);
-
-                path = fileSearch.conSearch();//继续找
-                if (!path.equals("")){
-
-//                    echo("123456789\r");
-//                    System.out.println("123456789\r");
-//                    System.out.print("12345678\r");
-
-//                    System.out.print("\r");
-//                    System.out.println("\r");
-
-
-
-                    // 找到，送检
-                    circleSearch(path);
-
-
-
-                }
-
-//                else {
-//                    //找不到，返回
-//                    return 0;
-//                }
-
-
-
-
-
-        return 0;
-    }
-
-//    private static void manualSearch() {
-//        //y确定q退出 其它继续
-//        // 顿号、反斜杠确定  回车继续  其它退出
-//        // 顿号、反斜杠 确定  反引号、间隔号 退出  其它继续
-//
-//
-////        echo("");
-////        echo("Please enter your choice ： ");
-//
-//        switch (input("Please enter your choice :")) {
-//            case "`", "·" -> {return;}
-//            case "\\","、" -> cfgPath();
-//            default  -> {
-//                fileSearch.conSearch();
-//                manualSearch();
-//
-//                //缺少：
-//                // 搜索结束
-//            }
-//        }
-//
-//        // 有BUg待改进
-//        //echo("");
-//        //System.out.println("No found !");
-//    }
-
-
-
-
-
-
-
-
-
-
-
-    private static void searchPath() {
-        System.out.println("ssssssssssss");
-
-        System.out.println("No found !");
-    }
-
-
-//    private static void searchPath(Integer mode) {
-//        if (mode.equals(1)){
-//            echo("");
-//            echo("Begin searching ... Please wait patiently.");
-//            echo("");
-//            //auto.fileSearch3.overSearch("YuanShen.exe");
-//            auto.fileSearch3.overSearch("launcher.exe");
-//        }
-//        if (mode.equals(2)) {
-//
-//            echo("");
-//            //echo("In the next steps, you need to enter [\\] or [、] to confirm, [`] or [·] to quit , and else to continue.");
-//
-////            echo("In the next steps, you need to enter [、] to confirm, [·] to quit , and else to continue.");
-//
-//
-//            echo("In the next steps, you need to enter :");
-//            echo("");
-//            echo("");
-//            echo("[\\] or [、] to confirm path");
-//
-//
-//            echo("");
-//            echo(" [`] or [·] to quit search");
-//
-//
-//            echo("");
-//            //echo("else to continue search");
-//
-//            echo("[Enter] to continue search");
-//
-//
-//
-//
-//            echo("");
-//            echo("Be searching ...");
-//            echo("");
-//            auto.fileSearch3.reSearch("YuanShen.exe");
-//
-//            manualSearch();
-//        }
-//    }
-
-
-    private static void inputPath() {
-        //System.out.println("iiiiiiiiiii");
-
-        testClear2();
-        testClear2();
+        return circleSearch();  //进入循环
 
     }
 
-    public static void testClear() {
-//        ConsoleUtils.print("Hello, world!");
-//        ConsoleUtils.backLine();
-//        ConsoleUtils.print("This is a test.");
-//        ConsoleUtils.clear();
+    /**
+     * 打印提示信息
+     */
+    private static void prtNotFoundMsg() {
+
+        echo("");
+        echo("Unfortunately, no suitable path has been found.");
+
+        echo("");
+        echo("Press any key to exit ...");
+
+        input();
+
     }
 
-    public static void testClear2() {
-
-        //ConsoleCLS.main();
-        String[] strings = {""};
-//        clear4.main(strings);
-
-    }
-
-
-    private static Boolean checkPath(String path){
-        String fileName = mekoPath.destFile(path);
-        String keyPath = "";
-        if (fileName.equals("YuanShen.exe")) {
-            String gamePath = mekoPath.lastPath(path);
-            if (!gamePath.equals("Genshin Impact Game")) return false;
-            keyPath = mekoPath.lastPath(path,2) + "\\launcher.exe";
-        }
-        if (fileName.equals("launcher.exe")) {
-            keyPath = mekoPath.lastPath(path) + "\\Genshin Impact Game\\YuanShen.exe";
-        }
-        File exFile = new File(keyPath);
-        return exFile.exists();
-    }
-
-
-    private static Boolean checkPathTest(String path){
+    /**
+     * 虚假的路径检查
+     */
+    private static boolean checkPathTest() {
         return true;
     }
 
-
-    private static void cfgPath() {
-        System.out.println();
-        //System.out.println("ccccccccccccccc");
-        System.out.println("Path configured.");
+    private static boolean checkPathTest(String path) {
+        currentPath = path;
+        return checkPathTest();
     }
 
+    private static byte eModeTemp = 0;  // 临时的 eMode
+
+    /**
+     * 路径检查
+     */
+    private static Boolean checkPath() {
+
+        //准备工作
+
+        String keyPath = lastPath(currentPath);
+        List<String> keyPathList = new ArrayList<>();
+
+        //原神
+
+        keyPathList.add(keyPath + "\\Genshin Impact Game\\YuanShen.exe");
+        keyPathList.add(keyPath + "\\Genshin Impact Game\\YuanShen_Data");
+        if (keyPathExist(keyPathList)) {
+            eModeTemp = 1;
+            return true;
+        }
+
+        //原神国际服
+
+        keyPathList.clear();
+        keyPathList.add(keyPath + "\\Genshin Impact Game\\GenshinImpact.exe");
+        keyPathList.add(keyPath + "\\Genshin Impact Game\\GenshinImpact_Data");
+        if (keyPathExist(keyPathList)) {
+            eModeTemp = 11;
+            return true;
+        }
+
+        //星铁
+
+        keyPathList.clear();
+        keyPathList.add(keyPath + "\\Game\\StarRail.exe");
+        keyPathList.add(keyPath + "\\Game\\StarRail_Data");
+        if (keyPathExist(keyPathList)) {
+            eModeTemp = 2;
+            return true;
+        }
+
+        //崩坏4
+
+        keyPathList.clear();
+        keyPathList.add(keyPath + "\\Games\\HonkaiImpact4.exe");
+        keyPathList.add(keyPath + "\\Games\\HonkaiImpact4_Data");
+        if (keyPathExist(keyPathList)) {
+            eModeTemp = 3;
+            return true;
+        }
+
+        return false;
+    }
+
+    private static boolean checkPath(String path) {
+        currentPath = path;
+        return checkPath();
+    }
+
+    private static boolean keyPathExist(List<String> list) {
+        for (String path : list) {
+            if (!fileExist(path)) return false;
+        }
+        return true;
+    }
+
+    private static boolean fileExist(String filePath) {
+        File exFile = new File(filePath);
+        return exFile.exists();
+    }
+
+    /**
+     * 配置游戏路径
+     */
+    private static void cfgPath() {
+
+        //clear();
+
+        echo("");
+        echo("Selected : ");
+        echo(currentPath);
+
+        echo("");
+        echo("Being configuring ...");
+
+        sleep(1000);
+
+        String key = "gamePath[" + eModeTemp + "]";
+        writeSet(key, currentPath);
+        writeSet("eMode", String.valueOf(eModeTemp));
+
+
+        echo("\r");
+        echo("Configured.");
+
+    }
+
+
+    //用户手动配置
+
+
+    private static void inputPath() {
+
+        //打印提示信息
+
+        echo("");
+        echo("Example 1 : " + "D:\\Program Files\\Genshin Impact");
+
+        echo("");
+        echo("Example 2 : " + "\"D:\\Program Files\\Genshin Impact\\Genshin Impact Game\\YuanShen.exe\"");
+
+        echo("");
+        echo("Example 3 : " + "\"D:\\Eval\\Desktop\\Genshin Impact.lnk\"");
+
+        echo("");
+        echo("Please enter the game path as shown above : ");
+
+
+        //进入循环
+
+        String input;
+
+        while (true) {
+            input = input(); //获取用户输入
+
+            //直接回车
+            if (input.equals("")) {
+                echo("");
+                echo("Input empty, operation canceled.");
+                break;
+            }
+
+            //检查路径
+            currentPath = input;
+            if (checkPathInput()) {
+                //进行配置
+                cfgPath();
+                break;
+            } else {
+                echo("");
+                echo("Path not checked through, please re-input : ");
+            }
+
+        }
+
+    }
+
+    /**
+     * 虚假的输入路径检查
+     */
+    private static Boolean checkPathInputTest() {
+        return true;
+    }
+
+    /**
+     * 输入路径检查
+     */
+    private static Boolean checkPathInput() {
+
+        //路径预处理
+
+        currentPath = currentPath.replaceAll("\"", "");  //去除引号
+        currentPath = currentPath.replaceAll("/", "\\");  //正杆转反杠
+        currentPath = currentPath.replaceAll("\\\\+$", "");
+        //System.out.println("currentPath = " + currentPath);
+
+        //进入判断
+
+        File file = new File(currentPath);
+
+        //TIPS : 这路径纠正，简直离谱！强大！！
+
+        if (file.isDirectory()) {
+
+            String launchPath;
+
+            //启动器在当层
+            launchPath = currentPath + "\\launcher.exe";
+            if (new File(launchPath).exists()) {
+                currentPath = launchPath;
+                return checkPath();
+            }
+
+            //启动器在上层
+            launchPath = lastPath(currentPath) + "\\launcher.exe";
+            if (new File(launchPath).exists()) {
+                currentPath = launchPath;
+                return checkPath();
+            }
+
+        } else {
+
+            //快捷键方式
+            if (currentPath.endsWith(".lnk")) {
+                currentPath = getLinkTargetPath(currentPath);
+                return checkPath();
+            }
+
+            //启动器路径
+            if (currentPath.endsWith("launcher.exe")) {
+                return checkPath();
+            }
+
+            //默认视为游戏程序路径（勿需担心，checkPath 会进行再度检查）
+
+            //currentPath = destPath(currentPath);  //本层文件夹
+            //currentPath = lastPath(currentPath);  //上层文件夹
+            currentPath = lastPath(currentPath, 2);  //上层文件夹
+            currentPath += "\\launcher.exe";  //启动器路径
+            return checkPath();
+
+        }
+        return false;
+    }
+
+    //获取 .lnk 文件的目标路径
+    private static String getLinkTargetPath(String linkPath) {
+        File file = new File(linkPath);
+        WindowsShortcut windowsShortcut;
+        try {
+            windowsShortcut = new WindowsShortcut(file);
+        } catch (IOException | ParseException e) {
+            //throw new RuntimeException(e);
+            return "";
+        }
+        return windowsShortcut.getRealFilename();
+    }
 
 }

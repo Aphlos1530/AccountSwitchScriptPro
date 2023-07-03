@@ -4,11 +4,20 @@ import java.io.IOException;
 
 public class clear implements imeko {
 
+
+    private static final String environment = System.console() == null ? "IDEA" : "CMD";   //在 CMD 中运行还是 IDEA 中运行
+
     public static void co() {
-        try {
-            clearScreen();
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
+        if (environment.equals("IDEA")) {
+            // IDEA 中不支持清屏操作，打印空行效果不佳，这里仅打印换行
+            // System.out.println();
+            // IDEA 中不支持清屏操作，打印空行效果不佳，此处不进行任何操作
+        } else {
+            try {
+                clearScreen();
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

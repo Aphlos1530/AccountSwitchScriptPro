@@ -1,15 +1,16 @@
 package test;
 
+import auto.WindowsShortcut;
 import auto.fileSearch;
-//import test.Console.ConsoleUtils;
-import utils.*;
 import org.junit.Test;
+import utils.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.List;
 
-import static java.lang.Thread.sleep;
 import static menu.menu.prtMainMenu;
 import static utils.meko.echo;
 
@@ -314,6 +315,19 @@ public class test {
     @Test
     public void testBackslash6(){
         System.out.print("Hello\r\r\r\nWorld");
+    }
+
+    @Test
+    public void testWindowsShortcut(){
+        File file = new File("D:\\Eval\\Desktop\\原神.lnk");
+        WindowsShortcut windowsShortcut;
+        try {
+            windowsShortcut = new WindowsShortcut(file);
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+        String filename = windowsShortcut.getRealFilename();
+        System.out.println(filename);
     }
 
 }

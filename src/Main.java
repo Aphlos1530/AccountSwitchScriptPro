@@ -1,8 +1,7 @@
-import test.testBackslash;
-
 import static asc.path.cfgGamePath;
 import static menu.menu.prtMainMenu;
 import static utils.meko.readSet;
+import static utils.meko.waitInput;
 
 public class Main {
 
@@ -11,6 +10,7 @@ public class Main {
         if (eMode.equals("")||eMode.equals("0")) cfgGamePath();
         else prtMainMenu();
 
+        waitInput("exit");
         
 
 //        System.out.println();

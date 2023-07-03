@@ -141,7 +141,7 @@ public class mekoMenu {
     //核心功能
 
 
-    private List<String> menuList = new LinkedList<>();  //独立变量用于缓存结果，避免反复计算
+    private final List<String> menuList = new LinkedList<>();  //独立变量用于缓存结果，避免反复计算
 
     /**
      * 获取每一行菜单

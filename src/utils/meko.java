@@ -23,8 +23,17 @@ public class meko {
         echo.co(text);
     }
 
+    public static void clear() {
+        clear.co();
+    }
+
     public static void cls() {
         clear.co();
+    }
+
+
+    public static String input() {
+        return input.read();
     }
 
     // Var
@@ -83,6 +92,16 @@ public class meko {
 
     public static Map<String, String> getLangMap(String language) {
         return langMap.get(language);
+    }
+
+    //Sys
+
+    public static void sleep() {
+        sleep.co();
+    }
+
+    public static void sleep(long millis) {
+        sleep.co(millis);
     }
 
 }

@@ -28,7 +28,7 @@ public class translator {
     public static String translate(Integer code) {
         String key = String.valueOf(code);  //转为字符型编码
         String text = langMap.get(key);  //获取编码在当前语言中对应的文本
-        return text == null ? "" : text;  //文本不存在
+        return text == null ? "" : text.trim();  //文本不存在
     }
 
     /**
@@ -37,20 +37,20 @@ public class translator {
     public static String translate(String text) {
 
         if (language.equals("English")) {
-            return text;  //英文模式，原文输出
+            return text.trim();  //英文模式，原文输出
         }
 
         String code = getTextCode(text);  //获取文本对应的代码
         if (code.equals("00000")) {
-            return text;  //对应代码不存在，返回原文
+            return text.trim();  //对应代码不存在，返回原文
         }
 
         String slat = langMap.get(code);  //获取代码对应的译文
         if (slat == null || slat.equals("")) {
-            return text;  //译文为空，返回原文
+            return text.trim();  //译文为空，返回原文
         }
 
-        return slat;  //转译成功，返回译文
+        return slat.trim();  //转译成功，返回译文
 
     }
 
