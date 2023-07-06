@@ -2,11 +2,9 @@ package auto;
 
 import utils.mekoBeginEnd;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
+import java.util.Arrays;
 
 public class LnkParser2 {
 
@@ -49,20 +47,17 @@ public class LnkParser2 {
 
 //        path="D:\\Eval\\Desktop\\Launch4j.lnk";
 
-//        path="D:\\Eval\\Desktop\\QQ音乐.lnk";
-
-        path="D:\\Eval\\Desktop\\Navicat16-jihuo.lnk";
+        path="D:\\Eval\\Desktop\\QQ音乐.lnk";
 
 
         byte[] link = FileToByteArray2(new File(path));
 
 
-        for (int i = 0; i < 13; i++) {
-//            System.out.println(i + " : " + getBitFlag(link, 0x18, 0x19, i));
-            System.out.println(i + " : " + getBitFlag(link, 0x18, i));
-        }
+//        for (int i = 0; i < 13; i++) {
+////            System.out.println(i + " : " + getBitFlag(link, 0x18, 0x19, i));
+//            System.out.println(i + " : " + getBitFlag(link, 0x18, i));
+//        }
 
-        System.out.println();
 
         for (int i = 0; i < 7; i++) {
             System.out.println(i + " : " + getBitFlag(link, 0x14, i));

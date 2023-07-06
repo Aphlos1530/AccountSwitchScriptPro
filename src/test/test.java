@@ -210,44 +210,44 @@ public class test {
     }
 
     @Test
-    public void testDq(){
+    public void testDq() {
         //testDq5.main();
     }
 
     @Test
-    public void testMekoBuilder(){
+    public void testMekoBuilder() {
         mekoBuilder builder = new mekoBuilder("#、┏、┳、┓、┗、┻、┛、┣、╋、┫、@、━、┃");
-        builder.replace("#"," ");
+        builder.replace("#", " ");
         builder.replace("@", "·");
         builder.replace("、", "");
         System.out.println(builder);
     }
 
     @Test
-    public void testMekoBuilder2(){
+    public void testMekoBuilder2() {
         mekoBuilder builder = new mekoBuilder("1234567890");
-        System.out.println(builder.getString(3,5));
-        System.out.println(builder.getString(2,9));
-        System.out.println(builder.getString(0,6));
-        System.out.println(builder.getString(0,-1));
-        System.out.println(builder.getString(-1,5));
-        System.out.println(builder.getString(8,4));
+        System.out.println(builder.getString(3, 5));
+        System.out.println(builder.getString(2, 9));
+        System.out.println(builder.getString(0, 6));
+        System.out.println(builder.getString(0, -1));
+        System.out.println(builder.getString(-1, 5));
+        System.out.println(builder.getString(8, 4));
     }
 
     @Test
-    public void testMekoBuilder3(){
+    public void testMekoBuilder3() {
         mekoBuilder builder = new mekoBuilder("123456789");
         System.out.println(builder);
-        System.out.println(builder.getStringEnhance(3,5));
-        System.out.println(builder.getStringEnhance(2,9));
-        System.out.println(builder.getStringEnhance(0,6));
-        System.out.println(builder.getStringEnhance(0,-1));
-        System.out.println(builder.getStringEnhance(-1,5));
-        System.out.println(builder.getStringEnhance(8,4));
-        System.out.println(builder.getStringEnhance(-2,-3));
-        System.out.println(builder.getStringEnhance(-6,-5));
-        System.out.println(builder.getStringEnhance(-2,1));
-        System.out.println(builder.getStringEnhance(2,-1));
+        System.out.println(builder.getStringEnhance(3, 5));
+        System.out.println(builder.getStringEnhance(2, 9));
+        System.out.println(builder.getStringEnhance(0, 6));
+        System.out.println(builder.getStringEnhance(0, -1));
+        System.out.println(builder.getStringEnhance(-1, 5));
+        System.out.println(builder.getStringEnhance(8, 4));
+        System.out.println(builder.getStringEnhance(-2, -3));
+        System.out.println(builder.getStringEnhance(-6, -5));
+        System.out.println(builder.getStringEnhance(-2, 1));
+        System.out.println(builder.getStringEnhance(2, -1));
     }
 
 
@@ -275,7 +275,7 @@ public class test {
     }
 
     @Test
-    public void testBackslash(){
+    public void testBackslash() {
         System.out.print("Hello\r");
         System.out.print("World");
         System.out.println();
@@ -284,7 +284,7 @@ public class test {
     }
 
     @Test
-    public void testBackslash2(){
+    public void testBackslash2() {
         echo("Hello\r");
         echo("World");
         echo("");
@@ -293,7 +293,7 @@ public class test {
     }
 
     @Test
-    public void testBackslash3(){
+    public void testBackslash3() {
         System.out.println("Hello\r");
         System.out.print("World");
         System.out.println("-");
@@ -302,23 +302,23 @@ public class test {
     }
 
     @Test
-    public void testBackslash4(){
+    public void testBackslash4() {
         System.out.print("Hello\r\nWorld");
     }
 
     @Test
-    public void testBackslash5(){
+    public void testBackslash5() {
         System.out.print("Hello\r\r\nWorld");
     }
 
 
     @Test
-    public void testBackslash6(){
+    public void testBackslash6() {
         System.out.print("Hello\r\r\r\nWorld");
     }
 
     @Test
-    public void testWindowsShortcut(){
+    public void testWindowsShortcut() {
         File file = new File("D:\\Eval\\Desktop\\原神.lnk");
         WindowsShortcut windowsShortcut;
         try {
@@ -328,6 +328,187 @@ public class test {
         }
         String filename = windowsShortcut.getRealFilename();
         System.out.println(filename);
+    }
+
+    @Test
+    public void testMekoBeginEnd1() {
+        mekoBeginEnd beginEnd = new mekoBeginEnd();
+        beginEnd.limit(-2, 3);
+
+        beginEnd.set(0, 3);
+        System.out.println(beginEnd.getBegin());
+        System.out.println(beginEnd.getEnd());
+
+        System.out.println();
+        beginEnd.set(-8, -5);
+        System.out.println(beginEnd.getBegin());
+        System.out.println(beginEnd.getEnd());
+
+        System.out.println();
+        beginEnd.set(-6, 1);
+        System.out.println(beginEnd.getBegin());
+        System.out.println(beginEnd.getEnd());
+    }
+
+    @Test
+    public void testMekoBeginEnd2() {
+        mekoBeginEnd beginEnd = new mekoBeginEnd();
+        beginEnd.limit(-2, 3);
+
+        beginEnd.set(-8, -3);
+        System.out.println(beginEnd.getBegin());
+        System.out.println(beginEnd.getEnd());
+
+        System.out.println();
+        beginEnd.set(-9, 2);
+        System.out.println(beginEnd.getBegin());
+        System.out.println(beginEnd.getEnd());
+
+        System.out.println();
+        beginEnd.set(4, -7);
+        System.out.println(beginEnd.getBegin());
+        System.out.println(beginEnd.getEnd());
+    }
+
+    @Test
+    public void testMekoBeginEnd3() {
+        mekoBeginEnd beginEnd = new mekoBeginEnd();
+        beginEnd.limit(-8, -3);
+
+        beginEnd.set(16, 15);
+        System.out.println(beginEnd.getBegin());
+        System.out.println(beginEnd.getEnd());
+
+        System.out.println();
+        beginEnd.set(-9, 2);
+        System.out.println(beginEnd.getBegin());
+        System.out.println(beginEnd.getEnd());
+
+        System.out.println();
+        beginEnd.set(4, -7);
+        System.out.println(beginEnd.getBegin());
+        System.out.println(beginEnd.getEnd());
+    }
+
+
+    @Test
+    public void testMekoBeginEnd() {
+        testMekoBeginEnd1();
+        System.out.println("----");
+        testMekoBeginEnd2();
+        System.out.println("----");
+        testMekoBeginEnd3();
+    }
+
+    @Test
+    public void testMod1() {
+        System.out.println(-15 % 6);
+        System.out.println(-9 % 6);
+        System.out.println(-3 % 6);
+        System.out.println(3 % 6);
+        System.out.println(9 % 6);
+        System.out.println(15 % 6);
+        System.out.println(21 % 6);
+    }
+
+    @Test
+    public void testMod2() {
+        System.out.println(-20 % 6);
+        System.out.println(-14 % 6);
+        System.out.println(-8 % 6);
+        System.out.println(-2 % 6);
+        System.out.println(4 % 6);
+        System.out.println(10 % 6);
+        System.out.println(16 % 6);
+    }
+
+    @Test
+    public void testMod3() {
+        System.out.println((-14 - 2) % 6 + 2);
+        System.out.println((-13 - 2) % 6 + 2);
+        System.out.println((-12 - 2) % 6 + 2);
+        System.out.println((-11 - 2) % 6 + 2);
+        System.out.println("------------");
+        System.out.println(-14 % 6);
+        System.out.println(-13 % 6);
+        System.out.println(-12 % 6);
+        System.out.println(-11 % 6);
+        System.out.println("LEFT = " + (-2 % 6));
+        System.out.println();
+        System.out.println("RIGHT = " + (3 % 6));
+        System.out.println(10 % 6);
+        System.out.println(11 % 6);
+        System.out.println(12 % 6);
+        System.out.println(13 % 6);
+        System.out.println("------------");
+        System.out.println((10 + 3) % 6 - 3);
+        System.out.println((11 + 3) % 6 - 3);
+        System.out.println((12 + 3) % 6 - 3);
+        System.out.println((13 + 3) % 6 - 3);
+    }
+
+//    @Test
+//    public void testMekoBeginEnd5() {
+//        System.out.println((-7 - 2) % 6 + 2);
+//        System.out.println((5 - 2) % 6 + 2);
+//        System.out.println((-7 - 2) % 6 + 2);
+//        System.out.println((4 - 2) % 6 + 2);
+//        System.out.println("------------");
+//        System.out.println("LEFT = " + (-2 % 6));
+//        System.out.println();
+//        System.out.println("RIGHT = " + (3 % 6));
+//        System.out.println("------------");
+//        System.out.println((8 + 3) % 6 - 3);
+//        System.out.println((2 + 3) % 6 - 3);
+//        System.out.println((-13 + 3) % 6 - 3);
+//        System.out.println((-3 + 3) % 6 - 3);
+//    }
+
+
+    @Test
+    public void testMekoBeginEnd6() {
+        mekoBeginEnd meb = new mekoBeginEnd(24, 25, 1225);
+        System.out.println(meb.getBegin());
+        System.out.println(meb.getEnd());
+    }
+
+    @Test
+    public void testMekoInterval() {
+        mekoInterval mei = new mekoInterval();
+        mei.setOuter(-2, 3);
+
+        mei.setInner(-7, 8);
+        mei.transform();
+        System.out.println(mei.getInnerLeft());
+        System.out.println(mei.getInnerRight());
+
+        System.out.println();
+        mei.setInner(5, 2);
+        mei.transform();
+        System.out.println(mei.getInnerLeft());
+        System.out.println(mei.getInnerRight());
+
+        System.out.println();
+        mei.setInner(-7, -13);
+        mei.transform();
+        System.out.println(mei.getInnerLeft());
+        System.out.println(mei.getInnerRight());
+
+        System.out.println();
+        mei.setInner(4, -3);
+        mei.transform();
+        System.out.println(mei.getInnerLeft());
+        System.out.println(mei.getInnerRight());
+    }
+
+    @Test
+    public void testMekoInterval2() {
+        mekoInterval meir = new mekoInterval();
+        meir.setInner(24,25);
+        meir.setOuter(0,1225);
+        meir.transform();
+        System.out.println(meir.getInnerLeft());
+        System.out.println(meir.getInnerRight());
     }
 
 }
